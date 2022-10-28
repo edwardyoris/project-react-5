@@ -13,7 +13,8 @@ const Pokedex = () => {
   useEffect(() => {
     if(typeselected !== 'All Pokemons') {
       axios.get(typeselected)
-      .then(res => console.log(res.data))
+      .then(res => {const result = res.data.pokemon.map(e => e.pokemon)
+      setPokemons(result)})
       .catch(err => console.log(err))
     } else {
       const URL = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=0'
